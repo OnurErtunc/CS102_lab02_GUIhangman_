@@ -12,7 +12,7 @@ public class GUIHangman
 {
 	public GUIHangman()
 	{
-    	System.out.println( "Start of GUIHangman\n");
+    	System.out.println( " Start of GUIHangman\n");
 
 		HangmanModel		hangman;
 		IHangmanSetup		basicSetup;
