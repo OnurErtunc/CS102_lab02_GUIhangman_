@@ -19,11 +19,14 @@ public class GallowsHangmanView extends JPanel implements IHangmanView {
 
     // const
     private static final int PANEL_HEIGHT = 300, WIDTH = 300, X = 0, Y = 50;
+    // background
+    Color retroPink = new Color(243, 124, 112 );
+
     public GallowsHangmanView( Hangman hangman ) {
 
         super();
         this.hangman = hangman;
-        this.setBackground( Color.orange );
+        this.setBackground( retroPink );
 
         rec = new Rectangle2D.Double[4];
         manLines = new Line2D.Double[5];
@@ -47,10 +50,10 @@ public class GallowsHangmanView extends JPanel implements IHangmanView {
                                             manHead.getX() + (manHead.getWidth()/2 ),
                                                 manHead.getY() + (manHead.getHeight() + 70 ) );
         // left leg
-        manLines[1] = new Line2D.Double(manLines[0].getX2(), manLines[0].getY2(), manLines[0].getX2() - 30,
+        manLines[1] = new Line2D.Double(manLines[0].getX2(), manLines[0].getY2(), manLines[0].getX2() - 10,
                 manLines[0].getY2() + 60);
         //right leg
-        manLines[2] = new Line2D.Double(manLines[0].getX2(), manLines[0].getY2(), manLines[0].getX2() + 30,
+        manLines[2] = new Line2D.Double(manLines[0].getX2(), manLines[0].getY2(), manLines[0].getX2() + 10,
                 manLines[1].getY2());
         //left arm
         manLines[3] = new Line2D.Double(manLines[0].getX2(),
@@ -86,13 +89,7 @@ public class GallowsHangmanView extends JPanel implements IHangmanView {
             g2.draw(man[i]);
         }
 
-        //changing the style to draw the text
-        g2.setPaint(Color.blue);
 
-        //drawing the strings. x,y cordinates are based on the rectangles drawn earlier
-        g2.drawString(secretWord, (int)rec[0].getX() + 20, (int)(rec[0].getY() + rec[0].getHeight()) + 60);
-        g2.drawString(usedWords, (int)rec[0].getX() + 20, (int)(rec[0].getY() + rec[0].getHeight()) + 120);
-        g2.drawString(tries, (int)(rec[1].getX() + rec[1].getWidth()) + 15, (int)rec[0].getY() - 50);
     }
 
     @Override

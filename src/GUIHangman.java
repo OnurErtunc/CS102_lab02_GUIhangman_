@@ -39,17 +39,20 @@ public class GUIHangman
 
 		// LetterButtonControls
 		LetterButtonControls letterButtonControls;
-		letterButtonControls = new LetterButtonControls( hangman.getAllLetters(), 2, 13 );
+		letterButtonControls = new HangmanLetterButtonControls( hangman, 13, 2 );
 		letterButtonControls.addActionListener( new HangmanLetterButtonsController( hangman ) );
 
 		// GallowsHangmanView
 		GallowsHangmanView gallowsHangmanView;
 		gallowsHangmanView = new GallowsHangmanView( hangman );
 
-
-
+		// add view
+		hangman.addView( labelsHangmanView );
+		hangman.addView( gallowsHangmanView );
+		//hangman.addView( letterButtonControls );
+		hangman.addView( newGameButton );
 		new SimpleJFrame( "GUIHangman", 									// title
-							gallowsHangmanView,					// center
+							gallowsHangmanView,									// center
 							textControlPanel, newGameButton,					// north, south
 							letterButtonControls, labelsHangmanView );			// east, west
 

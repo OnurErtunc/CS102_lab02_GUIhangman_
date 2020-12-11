@@ -5,7 +5,7 @@ import java.awt.*;
  * @author Onur Ertunc
  * @version 11.12.2020
  */
-public class HangmanLetterButtonControls extends LetterButtonControls implements IHangmanView{
+public class HangmanLetterButtonControls extends LetterButtonControls implements IHangmanView {
 
     public HangmanLetterButtonControls( Hangman hangman, int row, int col ) {
 

@@ -17,6 +17,12 @@ public class LabelsHangmanView extends JPanel implements IHangmanView {
     private JLabel usedLetters;
     private JLabel lost;
 
+    // font setup
+    private static final Font font = new Font("Serif", Font.BOLD, 50);
+
+    // background color
+    Color retroBlue = new Color(104, 174, 184);
+
     public LabelsHangmanView() {
 
         // calls JPanel! not a label
@@ -29,6 +35,10 @@ public class LabelsHangmanView extends JPanel implements IHangmanView {
         usedLetters = new JLabel( "" );
         lost = new JLabel( "" );
 
+        numberOfIncorrectAns.setFont( font );
+        usedLetters.setFont( font );
+        knownSoFar.setFont( font );
+
         // Layout setup
         this.setLayout( new BoxLayout( this, BoxLayout.Y_AXIS) );
         this.add( numberOfIncorrectAns );
@@ -36,7 +46,7 @@ public class LabelsHangmanView extends JPanel implements IHangmanView {
         this.add( usedLetters );
         this.add( lost );
 
-        this.setBackground( Color.green );
+        this.setBackground( retroBlue );
 
     }
 
