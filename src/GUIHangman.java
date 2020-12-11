@@ -18,16 +18,40 @@ public class GUIHangman
 		IHangmanSetup		basicSetup;
 		ConsoleHangmanView	consoleView;
 
+		// Initialization of instances
 		basicSetup = new BasicSetup();
 		hangman = new HangmanModel( basicSetup);
 
 		consoleView = new ConsoleHangmanView();
 		hangman.addView( consoleView);
 
-		new SimpleJFrame( "GUIHangman", 	// title
-							null,			// center
-							null, null,		// north, south
-							null, null );	// east, west
+		// Instance of TextFieldControlPanel instance created in part e
+		TextFieldControlPanel textControlPanel;
+		textControlPanel = new TextFieldControlPanel( hangman );
+
+		// Another addition to the GUI
+		NewGameButtonControl newGameButton;
+		newGameButton = new NewGameButtonControl( hangman );
+
+		// LabelsHangmanView
+		LabelsHangmanView labelsHangmanView;
+		labelsHangmanView = new LabelsHangmanView();
+
+		// LetterButtonControls
+		LetterButtonControls letterButtonControls;
+		letterButtonControls = new LetterButtonControls( hangman.getAllLetters(), 2, 13 );
+		letterButtonControls.addActionListener( new HangmanLetterButtonsController( hangman ) );
+
+		// GallowsHangmanView
+		GallowsHangmanView gallowsHangmanView;
+		gallowsHangmanView = new GallowsHangmanView( hangman );
+
+
+
+		new SimpleJFrame( "GUIHangman", 									// title
+							gallowsHangmanView,					// center
+							textControlPanel, newGameButton,					// north, south
+							letterButtonControls, labelsHangmanView );			// east, west
 
 		// this is an infinite loop reading from the console... not clever!
 		ConsoleControl.controlFor( hangman);

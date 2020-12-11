@@ -1,46 +1,75 @@
+import java.util.*;
 import cs102.Hangman;
 import cs102.IHangmanSetup;
-import java.util.ArrayList;
-/**
- * 
- * @author Onur Ertunc
- * @version 3.12.2020
- */
-public class HangmanModel extends Hangman {
-	
-	private ArrayList<IHangmanView> views;
-	
-	public HangmanModel( IHangmanSetup setup ) {
-		
-		super(setup);
+
+// HangmanModel - extends hangman adding support for single/multiple views & controllers
+// David, 2012/4/8
+
+public class HangmanModel extends Hangman
+{
+	ArrayList<IHangmanView> views;
+	// IHangmanView	view;
+
+	public HangmanModel( IHangmanSetup setup)
+	{
+		super( setup);
 		views = new ArrayList<IHangmanView>();
-		
+		// view = null;
 	}
-	
-	
-	public void update() {
-		
-		for ( int i = 0; i < views.size(); i++ ) {
-			views.get(i).updateView(this);
-		}
+
+	@Override
+	public int tryThis( char letter)
+	{
+		int result = super.tryThis( letter);
+		notifyViews();
+		return result;
 	}
-	
-	public void addView( IHangmanView view ) {
-		
-		views.add(view);
-		update();
+
+	@Override
+	public void initNewGame()
+	{
+		super.initNewGame();
+		notifyViews();
 	}
-	
-	public int tryThis( char letter ) {
-		
-		int overriden = super.tryThis( letter );
-		update();
-		return overriden;		
+
+
+	// **********************************************************
+	// * Single View Support
+	// **********************************************************
+//	public void addView( IHangmanView view)
+//	{
+//		this.view = view;
+//		notifyViews();
+//	}
+//
+//	public void notifyViews()
+//	{
+//		if ( view != null)
+//			view.updateView( this);
+//	}
+
+
+	// **********************************************************
+	// * Multiple View Support
+	// **********************************************************
+	public void addView( IHangmanView view)
+	{
+		views.add( view);
+		// notifyViews();
+		if ( view != null)
+			view.updateView( this);
 	}
-	
-	/*
-	 * public void initNewGame() {
-	 * 
-	 * super.initNewGame(); update(); }
-	 */
-}
+
+	public void notifyViews()
+	{
+		if ( views != null)
+			for ( IHangmanView view : views)
+				view.updateView( this);
+	}
+
+	public void removeView( IHangmanView view)
+	{
+		views.remove( view);
+	}
+
+} // end class HangmanModel

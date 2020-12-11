@@ -46,7 +46,7 @@ public class LetterButtonControls extends JPanel
 	public void setDisabled( String letters)
 	{
 		for ( Component c : getComponents() ) {
-			char ch = ((JButton) c).getLabel().charAt(0);
+			char ch = ((JButton) c).getText().charAt(0);
 			if ( letters.indexOf(ch) >= 0)
 				((JButton) c).setEnabled( false);
 		}
